@@ -1,124 +1,112 @@
-# CareerTrack — Smart Job & Internship Management Platform
+# 🚀 CareerTrack – Smart Job & Internship Management Platform
 
-**Tagline:** *Your Career. Your Progress. Your Next Opportunity.*
+**Your Career. Your Progress. Your Next Opportunity.**
 
-CareerTrack is a responsive, production-ready career management dashboard built with React, Vite, Tailwind CSS, Recharts, and the Remotive Public Remote Jobs API. It helps students, fresh graduates, and job seekers discover remote opportunities, organize applications across a 6-stage Kanban pipeline, schedule interviews with countdown reminders, and track analytics directly from browser-local storage.
+CareerTrack is a responsive web application designed to help students and job seekers discover job opportunities, manage applications, track interviews, save jobs, and monitor their career progress through a centralized dashboard.
 
----
+## 🌟 Features
 
-## Features
+- **Job Discovery:** Search and explore job opportunities using the Remotive Jobs API.
+- **Application Tracking:** Add, edit, delete, and manage job applications.
+- **Interview Management:** Schedule and organize upcoming interviews.
+- **Saved Jobs:** Bookmark and manage interesting opportunities.
+- **Career Analytics:** Visualize application statistics and career progress.
+- **Responsive UI:** Seamless experience across desktop, tablet, and mobile devices.
+- **Dark/Light Mode:** Switch between themes.
+- **Data Persistence:** Store application details and preferences using LocalStorage.
+- **Error Handling:** Manage API failures, invalid inputs, loading states, and empty results.
 
-- **Public Landing Page (`/`)**: Value proposition, workspace preview, numbered capabilities, workflow breakdown, and illustrative candidate stories.
-- **Personalized Dashboard (`/dashboard`)**: Real-time summary metrics calculated from stored applications and interviews, pipeline status chart, recent applications, upcoming interview countdowns, quick actions, activity timeline, and recommended remote roles.
-- **Find Remote Jobs (`/jobs`)**:
-  - Live integration with the official Remotive Remote Jobs API (`https://remotive.com/api/remote-jobs`).
-  - Search by title, keywords, company name, or skills with `AbortController` request cancellation.
-  - Filter by job category, employment type, worldwide/anywhere remote status, and location, plus sorting and pagination.
-  - Safe DOMParser-based HTML rendering (`src/utils/sanitizeHtml.tsx`) without `dangerouslySetInnerHTML`.
-  - 6-hour LocalStorage + in-memory response caching to respect Remotive API rate guidelines.
-  - Explicit error states (offline network, 403, 404, 429, 5xx, invalid JSON) with retry support.
-- **My Applications (`/applications` & `/applications/:id`)**:
-  - Full CRUD (Add, Edit, Delete with confirmation dialog) across 6 stages: `Applied`, `Under Review`, `Shortlisted`, `Interview Scheduled`, `Offer Received`, `Rejected`.
-  - Switch between a searchable **Table View** and a drag-and-drop **Kanban Board** (with keyboard-accessible status selectors).
-  - Duplicate prevention and dedicated **Application Details** page with linked interviews.
-- **Interview Tracker (`/interviews`)**:
-  - Schedule, edit, complete, and delete interviews (`Online`, `In-person`, `Phone`) with countdown timers and preparation notes.
-  - Switch between **List View** (Upcoming / Completed / All) and **Monthly Calendar View**.
-- **Saved Jobs (`/saved`)**: Bookmark remote opportunities, search/filter bookmarks, inspect full descriptions, and convert saved jobs into tracked applications.
-- **Career Analytics (`/analytics`)**: Real Recharts visualizations (Status Bar Chart, Category Pie Chart, Monthly Activity Line Chart) plus calculated Interview Conversion Rate and Offer Rate with clean zero-data empty states.
-- **Profile & Settings (`/settings`)**: Candidate profile preferences, Light/Dark theme toggle, validated JSON Export & Import backup tools, and selective data clearing.
+## 🛠️ Tech Stack
 
----
+| Technology | Purpose |
+|---|---|
+| React.js | Frontend development |
+| Vite | Development and build tool |
+| JavaScript | Application logic |
+| Tailwind CSS | Responsive styling |
+| React Router | Page navigation |
+| Recharts | Data visualization |
+| Lucide React | Icons |
+| Remotive API | Job listings |
+| LocalStorage | Browser-side data persistence |
+| Vercel | Deployment |
 
-## Technology Stack
 
-- **Frontend Framework**: React 19, TypeScript, Vite 8
-- **Routing**: React Router DOM v7
-- **Styling**: Tailwind CSS v4 with CSS design tokens (`src/styles/tokens.css`) and `.dark` theme support
-- **Icons**: Lucide React
-- **Charts**: Recharts
-- **State & Persistence**: React Context API + custom hooks (`useJobs`, `useApplications`, `useSavedJobs`, `useInterviews`, `useLocalStorage`, `useTheme`) backed by browser `LocalStorage`
-
----
-
-## API Integration Documentation
-
-CareerTrack integrates directly with the **Remotive Public Remote Jobs API**:
-
-- **Base Endpoint**: `https://remotive.com/api/remote-jobs`
-- **Search Query Example**: `https://remotive.com/api/remote-jobs?search=frontend&limit=60`
-
-### Compliance & Reliability Measures
-- Validates HTTP status codes (`404`, `429`, `403`, `5xx`) and JSON response shape before rendering.
-- Cancels overlapping in-flight requests using `AbortController`.
-- Caches responses per query for 6 hours to avoid excessive polling.
-- Credits Remotive as the listing source, links back to each original Remotive URL, and notes the up-to-24-hour listing delay per Remotive's public API terms.
-
----
-
-## Project Structure
+## 📂 Project Structure
 
 ```text
-src/
-  components/
-    applications/    # ApplicationCard, ApplicationForm, ApplicationTable, KanbanBoard, StatusBadge
-    common/          # Button, ConfirmationDialog, ErrorMessage, Input, LoadingSkeleton, Modal, Pagination, Select, ThemeToggle, ToastNotification
-    dashboard/       # ActivityTimeline, AnalyticsChart, EmptyState, StatCard
-    interviews/      # InterviewCalendar, InterviewCard, InterviewForm
-    jobs/            # JobCard, JobDetails, JobFilters, JobSearchBar, SaveJobButton
-    layout/          # DashboardLayout, Footer, Navbar, PageHeader, Sidebar
-  context/           # CareerContext.tsx
-  hooks/             # useApplications, useInterviews, useJobs, useLocalStorage, useSavedJobs, useTheme
-  pages/             # LandingPage, DashboardPage, FindJobsPage, MyApplicationsPage, ApplicationDetailsPage, InterviewTrackerPage, SavedJobsPage, CareerAnalyticsPage, ProfileSettingsPage, NotFoundPage
-  services/          # jobApi.ts
-  styles/            # tokens.css
-  types/             # career.ts
-  utils/             # formatters.ts, sanitizeHtml.tsx, storage.ts
-  App.tsx
-  main.tsx
+CareerTrack/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── dashboard/
+│   │   ├── jobs/
+│   │   ├── applications/
+│   │   └── interviews/
+│   ├── pages/
+│   ├── services/
+│   ├── hooks/
+│   ├── context/
+│   ├── utils/
+│   ├── styles/
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── package.json
+└── README.md
 ```
 
----
+## ⚙️ Installation and Setup
 
-## Local Installation & Development
-
+**1. Clone the repository**
 ```bash
-# 1. Install dependencies
+git clone https://github.com/sandhya-it/SWYNEX-Production-Frontend-Project.git
+```
+
+**2. Navigate to the project directory**
+```bash
+cd SWYNEX-Production-Frontend-Project
+```
+
+**3. Install dependencies**
+```bash
 npm install
+```
 
-# 2. Start development server on port 3000
+**4. Start the development server**
+```bash
 npm run dev
+```
 
-# 3. Type-check
-npm run lint
-
-# 4. Build for production
+**5. Build for production**
+```bash
 npm run build
 ```
 
----
+## 🎯 Project Objective
 
-## Vercel Deployment Guide
+The main objective of CareerTrack is to simplify the job search and application management process by bringing multiple career-related activities into one organized platform.
 
-CareerTrack is pre-configured for zero-backend static SPA deployment on **Vercel** via `vercel.json`:
+## 💡 Learning Outcomes
 
-- **Framework Preset**: `Vite`
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
-- **SPA Routing**: Configured via `vercel.json` rewrites (`/(.*) -> /index.html`) so direct visits or browser refreshes on routes like `/jobs`, `/applications`, or `/analytics` resolve properly.
+- Building responsive interfaces using React.
+- Developing reusable components.
+- Integrating REST APIs.
+- Implementing API error handling.
+- Managing application state.
+- Working with browser storage.
+- Preparing and deploying production builds.
 
-### Deploy Steps
-1. Push the repository to GitHub.
-2. Import the repository in the Vercel Dashboard.
-3. Keep the default Vite settings (`npm run build` / `dist`) and click **Deploy**.
+## 🚀 Future Developments
+- AI Resume Builder: Generate and optimize resumes based on job descriptions.
+- Smart Job Recommendations: Suggest opportunities based on skills and interests.
+- AI Interview Preparation: Generate role-specific mock interview questions.
+- Automated Notifications: Send reminders for interviews and application follow-ups.
+- Cloud Database Integration: Enable secure data storage and synchronization.
+- User Authentication: Introduce personalized accounts and profile management.
 
----
+## Demo link
 
-## Screenshots
-
-- *Landing Page*: Hero section, interactive dashboard preview, numbered capabilities, and workflow guide.
-- *Dashboard*: Live stat cards, application status bar chart, upcoming interview countdowns, and Remotive recommendations.
-- *Find Jobs*: Search bar, category/type/location filters, job cards, and safe sanitized job description modal.
-- *My Applications*: Searchable data table and 6-column drag-and-drop Kanban board.
-- *Interview Tracker*: List countdown cards and interactive monthly calendar view.
-- *Career Analytics*: Status bar chart, category donut chart, and monthly trend line chart.
+https://swynex-production-frontend-project-pi.vercel.app/settings
