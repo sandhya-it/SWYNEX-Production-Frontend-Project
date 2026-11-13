@@ -1,0 +1,6 @@
+{
+  "name": "CareerTrack",
+  "description": "Smart Job & Internship Management Platform to discover remote opportunities, track applications, schedule interviews, and monitor career progress.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
